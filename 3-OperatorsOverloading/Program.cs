@@ -18,6 +18,7 @@ namespace OperatorsOverloading
             int[] res2 = { 3, 4, 4, 3 };
 
             List<int> lst1 = List.Append(lst.Tail.Tail, List.From(4, 3));
+            //Console.WriteLine("list1 =" + lst1);
 
             // Look at this cast!
             // It is possible because of the conversion operator implemented in list
@@ -29,6 +30,7 @@ namespace OperatorsOverloading
 
             List<int> lst2 = lst;
             lst2 += List.From(4, 3);
+            //Console.WriteLine("list2 =" + lst2);
 
             if (lst2.Tail.Tail != lst1)
             {
@@ -40,9 +42,11 @@ namespace OperatorsOverloading
             // Look at this assignment!
             // It is possible because of the implicit conversion operator implemented in list
             lst3 -= 5;
-
+    
             if (lst3.Tail.Tail != res2)
             {
+                //Console.Write(lst3);
+                Console.WriteLine();
                 throw new Exception("Wrong implementation");
             }
 
