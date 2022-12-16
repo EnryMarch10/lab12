@@ -18,16 +18,16 @@ namespace Exceptions
 
         public object GetFirst()
         {
-            if (_firstIndex >= _lastIndex) throw new EmptyQueueException();
-            var first = _items[_firstIndex];
+            if (Count == 0) throw new EmptyQueueException("You are asking an element to a empty queue");
+            var first = _items[_firstIndex % Capacity];
             _firstIndex++;
             return first;
         }
         
         public void AddLast(object item)
         {
-            if (_lastIndex >= Capacity) throw new FullQueueException();
-            _items[_lastIndex] = item;
+            if (Count == Capacity) throw new FullQueueException("You are trying to put an element in a full queue");
+            _items[_lastIndex % Capacity] = item;
             _lastIndex++;
         }
     }
