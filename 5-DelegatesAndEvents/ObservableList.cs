@@ -50,7 +50,15 @@ namespace DelegatesAndEvents
         }
 
         /// <inheritdoc cref="ICollection{T}.Clear" />
-        public void Clear() => list.Clear();
+        public void Clear()
+        {
+            var clone = new List<TItem>(list);
+            list.Clear();
+            for (int i = 0; i < clone.Count; i++)
+            {
+                this.ElementRemoved?.Invoke(this, clone[i], i);
+            }
+        }
 
         /// <inheritdoc cref="ICollection{T}.Contains" />
         public bool Contains(TItem item) => list.Contains(item);
